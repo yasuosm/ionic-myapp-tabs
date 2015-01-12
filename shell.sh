@@ -21,3 +21,6 @@ cordova plugin add org.apache.cordova.vibration
 cordova plugin add org.apache.cordova.statusbar
 cordova platform add ios
 cordova platform add android
+sudo npm install
+bower install requirejs -S
+bower install requirejs-text -S

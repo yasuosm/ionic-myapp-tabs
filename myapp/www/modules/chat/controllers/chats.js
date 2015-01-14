@@ -1,6 +1,6 @@
 define([], function() {
 
-    angular.module('starter.controllers', []).controller('ChatsCtrl', function($scope, Chats) {
+    angular.module('starter.controllers').controller('ChatsCtrl', function($scope, Chats) {
 
         $scope.chats = Chats.all();
         

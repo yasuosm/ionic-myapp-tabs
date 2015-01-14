@@ -6,15 +6,16 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var rjs = require('gulp-requirejs');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'requirejs']);
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src('./scss/app.scss')
     .pipe(sass())
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
@@ -23,6 +24,19 @@ gulp.task('sass', function(done) {
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
+});
+
+gulp.task('requirejs', function() {
+  rjs({
+    name: 'rcfg',
+    paths: {
+      rcfg: 'config/requirejs.config'
+    },
+    baseUrl: './www/',
+    mainConfigFile: './www/config/requirejs.config.js',
+    out: 'app.js'
+  })
+    .pipe(gulp.dest('./www/js/')); // pipe it to the output DIR
 });
 
 gulp.task('watch', function() {

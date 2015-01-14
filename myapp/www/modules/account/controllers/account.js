@@ -1,6 +1,6 @@
 define([], function() {
 
-    angular.module('starter.controllers', []).controller('AccountCtrl', function($scope) {
+    angular.module('starter.controllers').controller('AccountCtrl', function($scope) {
         
         $scope.settings = {
             enableFriends: true

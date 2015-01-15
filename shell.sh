@@ -1,5 +1,12 @@
+###
+ # Start project
+ ##
 ionic start -a MyApp -i com.mycompany.myapp -s true myapp tabs
 cd myapp/
+
+###
+ # Add plugins
+ ##
 cordova plugin add org.apache.cordova.battery-status
 cordova plugin add org.apache.cordova.camera
 # cordova plugin add org.apache.cordova.console
@@ -21,6 +28,44 @@ cordova plugin add org.apache.cordova.vibration
 cordova plugin add org.apache.cordova.statusbar
 cordova platform add ios
 cordova platform add android
+
+###
+ # Install node modules
+ ##
 sudo npm install
+
+###
+ # Install requirejs
+ ##
 bower install requirejs -S
 bower install requirejs-text -S
+
+###
+ # Config requirejs
+ ##
+mkdir www/config
+nano www/config/requirejs.config.js
+
+###
+ # Make global files
+ ##
+mkdir www/global
+nano www/global/ini.js # Define app
+nano www/global/bootstrap.js # Manual bootstrap app
+
+###
+ # Make modules
+ # Structure:
+ # modules
+ # |-controllers
+ # |-directives
+ # |-services
+ # |-templates
+ # '-main.js
+ ##
+mkdir www/modules
+
+###
+ # Add gulp task
+ ##
+nano gulpfile.js

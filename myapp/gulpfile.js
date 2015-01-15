@@ -7,12 +7,27 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var rjs = require('gulp-requirejs');
+var merge = require('merge-stream');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass', 'requirejs']);
+gulp.task('default', ['sass', 'requirejs'], function() {
+  var css = gulp.src('./www/css/*')
+    .pipe(gulp.dest('./platforms/android/assets/www/css/'))
+    .pipe(gulp.dest('./platforms/ios/www/css/'));
+  
+  var img = gulp.src('./www/img/*')
+    .pipe(gulp.dest('./platforms/android/assets/www/img/'))
+    .pipe(gulp.dest('./platforms/ios/www/img/'));
+
+  var js = gulp.src('./www/js/*')
+    .pipe(gulp.dest('./platforms/android/assets/www/js/'))
+    .pipe(gulp.dest('./platforms/ios/www/js/'));
+
+  return merge(css, img, js);
+});
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/app.scss')

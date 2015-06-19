@@ -1,18 +1,15 @@
 requirejs.config({
-    baseUrl: './www/',
+    baseUrl: '.',
     paths: {
         bootstrap: 'global/bootstrap',
         ini: 'global/ini',
-        angular: 'lib/angular/angular',
-        angularAnimate: 'lib/angular-animate/angular-animate',
-        angularSanitize: 'lib/angular-sanitize/angular-sanitize',
-        angularUiRouter: 'lib/angular-ui-router/release/angular-ui-router',
-        ionicAngular: 'lib/ionic/js/ionic-angular',
         ionicBundle: 'lib/ionic/js/ionic.bundle',
-        ionic: 'lib/ionic/js/ionic',
         text: 'lib/requirejs-text/text'
     },
     packages: [{
+        name: 'config',
+        location: 'config'
+    }, {
         name: 'account',
         location: 'modules/account'
     }, {
@@ -27,20 +24,19 @@ requirejs.config({
     }, {
         name: 'friend',
         location: 'modules/friend'
-    }]
+    }],
+    shim: {
+        'ini': {
+            deps: ['ionicBundle']
+        },
+        'bootstrap': {
+            deps: ['ini']
+        }
+    }
 });
 
 // Start loading the main app file. Put all of
 // your application logic in there.
 requirejs([
-    'ionicBundle',
-    'ini',
-    // modules
-    'account',
-    'chat',
-    'core',
-    'dash',
-    'friend',
-    // manual bootstrapping app
     'bootstrap'
 ]);

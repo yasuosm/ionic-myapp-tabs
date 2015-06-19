@@ -13,31 +13,19 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass', 'requirejs'], function() {
-  var css = gulp.src('./www/css/*')
-    .pipe(gulp.dest('./platforms/android/assets/www/css/'))
-    .pipe(gulp.dest('./platforms/ios/www/css/'));
-  
-  var img = gulp.src('./www/img/*')
-    .pipe(gulp.dest('./platforms/android/assets/www/img/'))
-    .pipe(gulp.dest('./platforms/ios/www/img/'));
-
-  var js = gulp.src('./www/js/*')
-    .pipe(gulp.dest('./platforms/android/assets/www/js/'))
-    .pipe(gulp.dest('./platforms/ios/www/js/'));
-
-  return merge(css, img, js);
-});
+gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/app.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
+    .pipe(sass({
+      errLogToConsole: true
     }))
-    .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
+    // .pipe(minifyCss({
+    //   keepSpecialComments: 0
+    // }))
+    // .pipe(rename({ extname: '.min.css' }))
+    // .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });
 
@@ -45,10 +33,10 @@ gulp.task('requirejs', function() {
   rjs({
     name: 'rcfg',
     paths: {
-      rcfg: 'config/requirejs.config'
+      rcfg: 'config/requirejs'
     },
     baseUrl: './www/',
-    mainConfigFile: './www/config/requirejs.config.js',
+    mainConfigFile: './www/config/requirejs.js',
     out: 'app.js'
   })
     .pipe(gulp.dest('./www/js/')); // pipe it to the output DIR

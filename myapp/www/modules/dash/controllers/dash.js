@@ -1,4 +1,3 @@
 define([], function() {
-
     angular.module('starter.controllers').controller('DashCtrl', function($scope) {});
 });

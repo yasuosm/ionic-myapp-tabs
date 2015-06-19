@@ -3,8 +3,7 @@ define([
 	'account',
 	'chat',
 	'core',
-	'dash',
-	'friend'
+	'dash'
 ], function() {
 	// manual boostrapping app
     angular.element(document).ready(function() {

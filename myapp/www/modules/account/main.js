@@ -1,10 +1,8 @@
 define([
-	'account/controllers/account',
-	'text!account/templates/tab-account.html'
+    'account/controllers/account',
+    'text!account/templates/tab-account.html'
 ], function() {
-
     angular.module('starter').config(function($stateProvider, $urlRouterProvider) {
-
         $stateProvider.state('tab.account', {
             url: '/account',
             views: {

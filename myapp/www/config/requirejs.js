@@ -21,9 +21,6 @@ requirejs.config({
     }, {
         name: 'dash',
         location: 'modules/dash'
-    }, {
-        name: 'friend',
-        location: 'modules/friend'
     }],
     shim: {
         'ini': {
